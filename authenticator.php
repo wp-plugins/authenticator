@@ -1,0 +1,36 @@
+<?php
+/*
+Plugin Name: Authenticator
+Plugin URI: http://bueltge.de/
+Description: This plugin allows you to make your WordPress site accessible to logged in users only. In other words to view your site they have to create / have an account in your site and be logged in. No configuration necessary. Simply activating the plugin is all that is required from you.
+Author: Frank Bueltge
+Version: 0.1
+Author URI: http://bueltge.de/
+License: GPL
+*/
+
+if (!class_exists('Authenticator')) {
+	class Authenticator {
+	
+		function fb_authenticator_redirect() {
+			// Checks if a user is logged in, if not redirects them to the login page
+			if ( !is_user_logged_in() ) {
+				nocache_headers();
+				header("HTTP/1.1 302 Moved Temporarily");
+				header('Location: ' . get_option('siteurl') . '/wp-login.php?redirect_to=' . urlencode($_SERVER['REQUEST_URI']));
+				header("Status: 302 Moved Temporarily");
+				exit();
+			}
+		}
+	
+		function Authenticator() {
+			if ('wp-login.php' != $pagenow && 'wp-register.php' != $pagenow)
+				add_action( 'template_redirect', array($this, 'fb_authenticator_redirect') );
+		}
+	
+	}
+	
+	$Authenticator = new Authenticator();
+
+}
+?>
