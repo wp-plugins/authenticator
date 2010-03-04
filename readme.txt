@@ -16,7 +16,7 @@ This plugin allows you to make your WordPress site accessible to logged in users
 1. WordPress version 1.5 and later
 
 = Interested in WordPress tips and tricks =
-You may also be interested in WordPress tips and tricks at [WP Enginner](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
+You may also be interested in WordPress tips and tricks at [WP Engineer](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
 
 
 == Installation ==
