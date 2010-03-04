@@ -15,8 +15,6 @@ This plugin allows you to make your WordPress site accessible to logged in users
 = Requirements =
 1. WordPress version 1.5 and later
 
-Please visit [the official website](http://bueltge.de/authenticator-wordpress-login-frontend-plugin/721/ "Authenticator") for further details and the latest information on this plugin.
-
 = Interested in WordPress tips and tricks =
 You may also be interested in WordPress tips and tricks at [WP Enginner](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
 
