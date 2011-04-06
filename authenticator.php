@@ -7,6 +7,7 @@ Author: Frank B&uuml;ltge
 Version: 0.3.0
 Author URI: http://bueltge.de/
 License: GPL
+Network: true
 */
 
 if (!class_exists('Authenticator')) {
