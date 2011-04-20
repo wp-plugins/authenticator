@@ -4,7 +4,7 @@ Donate link: http://bueltge.de/wunschliste/
 Tags: 
 Requires at least: 1.5
 Tested up to: 3.1.1
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 
 This plugin allows you to make your WordPress site accessible to logged in users only. In other words to view your site they have to create / have an account in your site and be logged in. No configuration necessary, simply activating - thats all.
 
@@ -37,6 +37,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 Please visit [my website](http://bueltge.de/ "bueltge.de") and let him know your care or see the [wishlist](http://bueltge.de/wunschliste/ "Wishlist") of the author or use the donate form.
 
 == Changelog ==
+= v0.4.1 (04/20/2011) =
+* Remove network comment for use different in blogs of WPMultisite
+
 = v0.4.0 (04/11/2011) =
 * Bugfix for login without multisite
 * ask for multisite
