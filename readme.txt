@@ -3,7 +3,7 @@ Contributors: Bueltge, nullbyte
 Donate link: http://bueltge.de/wunschliste/
 Tags: 
 Requires at least: 1.5
-Tested up to: 3.1.1
+Tested up to: 3.3-beta2
 Stable tag: 0.4.1
 
 This plugin allows you to make your WordPress site accessible to logged in users only. In other words to view your site they have to create / have an account in your site and be logged in. No configuration necessary, simply activating - thats all.
