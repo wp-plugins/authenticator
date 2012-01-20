@@ -15,8 +15,6 @@ This plugin allows you to make your WordPress site accessible to logged in users
 * WordPress version 1.5 and later; current (01/2012) tested with 3.3* and 3.4-alpha
 * PHP 5.2*
 
-Please visit [the official website](http://bueltge.de/authenticator-wordpress-login-frontend-plugin/721/ "Authenticator") for further details and the latest information on this plugin.
-
 
 == Installation ==
 1. Unpack the download-package
