@@ -4,37 +4,65 @@ Plugin Name: Authenticator
 Plugin URI: http://bueltge.de/authenticator-wordpress-login-frontend-plugin/721/
 Description: This plugin allows you to make your WordPress site accessible to logged in users only. In other words to view your site they have to create / have an account in your site and be logged in. No configuration necessary, simply activating - thats all.
 Author: Frank B&uuml;ltge
-Version: 0.4.1
+Version: 1.0.0
 Author URI: http://bueltge.de/
-License: GPLv2
+License: GPLv3
 */
 
-if (!class_exists('Authenticator')) {
-	class Authenticator {
-	
-		function fb_authenticator_redirect() {
-			// Checks if a user is logged in or has rights on the blog in multisite, if not redirects them to the login page
-			if ( 
-				! is_user_logged_in() || 
-				( ! current_user_can( 'read' ) && function_exists('is_multisite') && is_multisite() )
-				) {
-				nocache_headers();
-				header( "HTTP/1.1 302 Moved Temporarily" );
-				header( 'Location: ' . get_option( 'siteurl' ) . '/wp-login.php?redirect_to=' . urlencode( $_SERVER['REQUEST_URI'] ) );
-				header( "Status: 302 Moved Temporarily" );
-				exit();
-			}
-		}
-		
-		function Authenticator() {
-			global $pagenow;
+// check for uses in WP
+if ( ! function_exists( 'add_filter' ) ) {
+	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
+	exit;
+}
 
-			if ( 'wp-login.php' != $pagenow && 'wp-register.php' != $pagenow )
-				add_action( 'template_redirect', array( $this, 'fb_authenticator_redirect' ) );
-		}
+class Authenticator {
 	
+	/**
+	 * Array for pages, there are checked for exclude the redirect
+	 */
+	public static $pagenows = array( 'wp-login.php', 'wp-register.php' );
+	
+	/**
+	 * Constructor, init redirect on defined hooks
+	 * 
+	 * @since   0.4.0
+	 * @return  void
+	 */
+	public function __construct() {
+		
+		if ( ! isset( $GLOBALS['pagenow'] ) ||
+			 ! in_array( $GLOBALS['pagenow'], self :: $pagenows )
+			)
+			add_action( 'template_redirect', array( __CLASS__, 'redirect' ) );
 	}
 	
-	$Authenticator = new Authenticator();
-}
-?>
+	/*
+	 * Get redirect to login-page, if user not logged in blogs of network and single install
+	 * 
+	 * @since  0.4.2
+	 * @retur  void
+	 */
+	public static function redirect() {
+		
+		/**
+		 * Checks if a user is logged in or has rights on the blog in multisite, 
+		 * if not redirects them to the login page
+		 */
+		$reauth = ! current_user_can( 'read' ) && 
+			function_exists('is_multisite') && 
+			is_multisite() ? TRUE : FALSE;
+		
+		if ( ! is_user_logged_in() || $reauth ) {
+			nocache_headers();
+			wp_redirect(
+				wp_login_url( $_SERVER[ 'REQUEST_URI' ], $reauth ),
+				$status = 302
+			);
+			exit();
+		}
+	}
+
+} // end class
+
+$authenticator = new authenticator();
+
