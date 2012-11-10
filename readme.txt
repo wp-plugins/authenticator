@@ -1,9 +1,9 @@
 === Authenticator ===
-Contributors: Bueltge, nullbyte
+Contributors: Bueltge, nullbyte, inpsyde, dnaber-de
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
 Tags: login, authentification, accessible, access, members,
 Requires at least: 1.5
-Tested up to: 3.4-alpha
+Tested up to: 3.5-Beta2
 Stable tag: 1.0.0
 
 This plugin allows you to make your WordPress site accessible to logged in users only.
@@ -11,12 +11,17 @@ This plugin allows you to make your WordPress site accessible to logged in users
 == Description ==
 This plugin allows you to make your WordPress site accessible to logged in users only. In other words to view your site they have to create / have an account in your site and be logged in. No configuration necessary, simply activating - thats all.
 
+**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
+
+Have a look at the premium plugins in our [market](http://marketpress.com).
+
+== Installation ==
 = Requirements =
 * WordPress version 1.5 and later; current (01/2012) tested with 3.3* and 3.4-alpha
 * PHP 5.2*
+* Single or Multisite installation
 
-
-== Installation ==
+= Installation =
 1. Unpack the download-package
 2. Upload folder include the file to the `/wp-content/plugins/` directory. 
 3. Activate the plugin through the `Plugins` menu in WordPress
@@ -24,7 +29,7 @@ This plugin allows you to make your WordPress site accessible to logged in users
 or use the installer via backend of WordPress
 
 == Other Notes ==
-= Licence =
+= License =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955) for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 = Translations =
