@@ -1,31 +1,35 @@
 === Authenticator ===
-Contributors: Bueltge, nullbyte, inpsyde, dnaber-de
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955
+Contributors: inpsyde, Bueltge, nullbyte, dnaber-de
+Donate link: http://marketpress.com/
 Tags: login, authentification, accessible, access, members
 Requires at least: 1.5
-Tested up to: 3.6-Beta3
+Tested up to: 3.9
 Stable tag: 1.1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This plugin allows you to make your WordPress site accessible to logged in users only.
 
 == Description ==
 This plugin allows you to make your WordPress site accessible to logged in users only. In other words to view your site they have to create / have an account in your site and be logged in. No configuration necessary, simply activating - thats all.
 
-**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
-
+= Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress =
 Have a look at the premium plugins in our [market](http://marketpress.com).
 
-= Requirements =
- * WordPress version 1.5 and later; current (05/2013) tested with 3.5* and 3.5-Beta3
- * PHP 5.2*
- * Single or Multisite installation
-
-On PHP-CGI setups:
-
- * `mod_setenvif` or `mod_rewrite` (if you want to user HTTP-Authentication for feeds)
+= Bugs, technical hints or contribute =
+Please give me feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/Authenticator).
 
 
 == Installation ==
+= Requirements =
+* WordPress version 1.5 and later, see tested up to
+* PHP 5.2*
+* Single or Multisite installation
+
+On PHP-CGI setups:
+ * `mod_setenvif` or `mod_rewrite` (if you want to user HTTP-Authentication for feeds)
+
+= Installation =
 1. Unpack the download-package
 2. Upload folder include the file to the `/wp-content/plugins/` directory.
 3. Activate the plugin through the `Plugins` menu in WordPress
@@ -125,11 +129,20 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 
 == Changelog ==
-= 1.1.0 (05/23/2013) =
+= 1.2.0 =
+* Fix the php notice [#15](https://github.com/bueltge/Authenticator/issues/15)
+* Fix [#14][https://github.com/bueltge/Authenticator/issues/14] 
+* Add a removel of backlink in login footer [#8](https://github.com/bueltge/Authenticator/issues/8)
+* Filter for Ajax actions [#12](https://github.com/bueltge/Authenticator/issues/12)
+* Redefine `$reauth` for redirect [#11](https://github.com/bueltge/Authenticator/issues/11)
+* Apply API Hook for exclude several URLs from redirect [#10](https://github.com/bueltge/Authenticator/issues/10)
+* Add settings for XMLRPC [#9](https://github.com/bueltge/Authenticator/issues/9)
+* Add Composer possibility
+
+= 1.1.0 =
 * add http authentification for feeds
 * add settings for reading feed
 * add token auth for feeds
-* remove "Back to blog" link on login page
 
 = 1.0.0 (01/20/2012) =
 * fix in MU for redirect, also if the user have not an account

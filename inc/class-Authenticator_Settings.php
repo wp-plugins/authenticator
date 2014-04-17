@@ -17,7 +17,9 @@ class Authenticator_Settings {
 	protected static $default_options = array(
 		'feed_authentication' => 'none',
 		'auth_token'          => '',
-		'show_token_to_users' => '0'
+		'show_token_to_users' => '0',
+		'cookie_lifetime'     => '0',
+		'disable_xmlrpc'      => '1'
 	);
 
 	/**
@@ -88,6 +90,35 @@ class Authenticator_Settings {
 			)
 		);
 
+		add_settings_field(
+			'cookie_lifetime',
+			__( 'Cookie lifetime in days', Authenticator::TEXTDOMAIN ),
+			array( $this, 'textinput' ),
+			$this->page,
+			$this->section,
+			array(
+				'id'        => 'cookie_lifetime',
+				'name'      => Authenticator::KEY . '[cookie_lifetime]',
+				'label_for' => 'cookie_lifetime',
+				'notice'    => __( 'User will be logged in for this time', Authenticator::TEXTDOMAIN )
+			)
+		);
+
+		add_settings_field(
+			'disable_xmlrpc',
+			__( 'Disable XMLRPC Interface?', Authenticator::TEXTDOMAIN ),
+			array( $this, 'checkbox' ),
+			$this->page,
+			$this->section,
+			array(
+				'id'        => 'disable_xmlrpc',
+				'name'      => Authenticator::KEY . '[disable_xmlrpc]',
+				'label_for' => 'disable_xmlrpc',
+				'notice'    => __( 'This setting will disable the interface even for logged in users.', Authenticator::TEXTDOMAIN )
+			)
+		);
+
+
 		new Authenticator_Settings_UI();
 		new Authenticator_User_Profile();
 	}
@@ -124,7 +155,7 @@ class Authenticator_Settings {
 				<?php checked( $current, 'http' ); ?>
 			/>
 			<label for="<?php echo $id . '_http'; ?>">
-				<?php _e( 'HTTP Authentication (Basic) with Username/Password of your Wordpress account.', Authenticator::TEXTDOMAIN ); ?>
+				<?php _e( 'HTTP Authentication (Basic) with Username/Password of your WordPress account.', Authenticator::TEXTDOMAIN ); ?>
 			</label>
 		</p>
 		<p>
@@ -217,7 +248,34 @@ class Authenticator_Settings {
 		<?php
 	}
 
+	/**
+	 * prints a text input field
+	 *
+	 * @param array $attr
+	 * @return void
+	 */
+	public function textinput( $attr ) {
 
+		$id      = $attr[ 'id' ];
+		$name    = $attr[ 'name' ];
+		$current = 0 == $this->options[ $id ]
+			? ''
+			: $this->options[ $id ];
+		?>
+		<input
+			type="text"
+			name="<?php echo $name; ?>"
+			id="<?php echo $id; ?>"
+			value="<?php echo esc_attr( $current ); ?>"
+		/>
+		<?php
+		if ( ! empty( $attr[ 'notice' ] ) ) : ?>
+			<p class="description">
+				<?php echo esc_attr( $attr[ 'notice' ] ); ?>
+			</p>
+			<?php
+		endif;
+	}
 
 
 	/**
@@ -257,6 +315,14 @@ class Authenticator_Settings {
 			$request[ 'show_token_to_users' ] = '1';
 
 		$request[ 'auth_token' ] = $this->get_auth_token();
+
+		$request[ 'cookie_lifetime' ] = ( int ) $request[ 'cookie_lifetime' ];
+
+		if ( empty( $request[ 'disable_xmlrpc' ] ) )
+			$request[ 'disable_xmlrpc' ] = '0';
+		else
+			$request[ 'disable_xmlrpc' ] = '1';
+
 
 		return $request;
 	}
@@ -318,6 +384,17 @@ class Authenticator_Settings {
 			$this->update_options();
 		} else {
 			$this->options = $options;
+			#check options for updates on default options
+			$update = FALSE;
+			foreach ( self::$default_options as $k => $v ) {
+				if ( ! isset( $this->options[ $k ] ) ) {
+					$this->options[ $k ] = $v;
+					$update = TRUE;
+				}
+			}
+			if ( $update )
+				$this->update_options();
+
 		}
 	}
 
