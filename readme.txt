@@ -99,18 +99,19 @@ The plugin will generate a token automaticaly, when choosing this option. Copy t
 	
 = API =
 
-** Filters **
+**Filters**
 
 * `authenticator_get_options` Whith this filter you have access to the current authentication-token:
 		
 	<?php
 	$authenticator_options = apply_filters( 'authenticator_get_options', array() );
-	```
-	* ```authenticator_bypass_feed_auth``` gives you the posibillity to open the feeds for everyone. No authentication will be required then.
-	```php
+	
+
+* `authenticator_bypass_feed_auth` gives you the posibillity to open the feeds for everyone. No authentication will be required then.
+	
 	<?php
 	add_filter( 'authenticator_bypass_feed_auth', '__return_true' 
-
+	
 
 == Screenshots ==
 1. Authenticator's setting options at Settings → Reading.
