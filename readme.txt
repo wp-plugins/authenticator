@@ -3,7 +3,7 @@ Contributors: inpsyde, Bueltge, nullbyte, dnaber-de
 Donate link: http://marketpress.com/
 Tags: login, authentification, accessible, access, members
 Requires at least: 1.5
-Tested up to: 4.0-alpha
+Tested up to: 4.0-RC1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,7 +110,23 @@ The plugin will generate a token automaticaly, when choosing this option. Copy t
 * `authenticator_bypass_feed_auth` gives you the posibillity to open the feeds for everyone. No authentication will be required then.
 	
 	<?php
-	add_filter( 'authenticator_bypass_feed_auth', '__return_true' 
+	add_filter( 'authenticator_bypass_feed_auth', '__return_true' );
+	
+
+* `authenticator_exclude_pagenows` Pass an array of `$GLOBALS[ 'pagenow' ]` values to it, to exclude several WordPress pages from redirecting to the login page.
+
+* `authenticator_exclude_ajax_actions` AJAX-Actions (independend of `_nopriv`) which should not be authenticated (remain open for everyone)
+
+* `authenticator_exclude_posts` List of post-titles which should remain public, like the follow example source to public the 'Contact'-page.
+
+	
+	<?php
+	add_action( 'plugins_loaded', function() {
+		add_filter( 'authenticator_exclude_posts', function( $titles ) {
+			$titles[] = 'Contact'; // here goes the post-title of the post/page you want to exclude
+			return $titles;
+		} );
+	} );
 	
 
 == Screenshots ==
@@ -129,6 +145,11 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Thanks to [Borisa Djuraskovic](http://www.webhostinghub.com/) for the serbo croation language files
 
 == Changelog ==
+= 1.2.1 (08/31/2014) =
+* Add guard for the constant XMLRPC_REQUEST
+* Fix for XMLRPC bug [#17](https://github.com/bueltge/Authenticator/issues/17)
+* Enhance the readme to exclude posts/pages [#18](https://github.com/bueltge/Authenticator/issues/18)
+
 = 1.2.0 (06/26/2014) =
 * Fix the php notice [#15](https://github.com/bueltge/Authenticator/issues/15)
 * Fix [#14][https://github.com/bueltge/Authenticator/issues/14] 
