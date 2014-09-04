@@ -3,7 +3,7 @@ Contributors: inpsyde, Bueltge, nullbyte, dnaber-de
 Donate link: http://marketpress.com/
 Tags: login, authentification, accessible, access, members
 Requires at least: 1.5
-Tested up to: 4.0-RC1
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -96,22 +96,22 @@ The plugin will generate a token automaticaly, when choosing this option. Copy t
 
 	#without permalinks
 	http://yourblog.com/?feed=rss2&ef05aa961a0c10dce006284213727730
-	
+
 = API =
 
 **Filters**
 
 * `authenticator_get_options` Whith this filter you have access to the current authentication-token:
-		
+
 	<?php
 	$authenticator_options = apply_filters( 'authenticator_get_options', array() );
-	
+
 
 * `authenticator_bypass_feed_auth` gives you the posibillity to open the feeds for everyone. No authentication will be required then.
-	
+
 	<?php
 	add_filter( 'authenticator_bypass_feed_auth', '__return_true' );
-	
+
 
 * `authenticator_exclude_pagenows` Pass an array of `$GLOBALS[ 'pagenow' ]` values to it, to exclude several WordPress pages from redirecting to the login page.
 
@@ -119,7 +119,7 @@ The plugin will generate a token automaticaly, when choosing this option. Copy t
 
 * `authenticator_exclude_posts` List of post-titles which should remain public, like the follow example source to public the 'Contact'-page.
 
-		
+
 		<?php
 		add_action( 'plugins_loaded', function() {
 			add_filter( 'authenticator_exclude_posts', function( $titles ) {
@@ -127,7 +127,7 @@ The plugin will generate a token automaticaly, when choosing this option. Copy t
 				return $titles;
 			} );
 		} );
-		
+
 
 == Screenshots ==
 1. Authenticator's setting options at Settings → Reading.
@@ -152,7 +152,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 = 1.2.0 (06/26/2014) =
 * Fix the php notice [#15](https://github.com/bueltge/Authenticator/issues/15)
-* Fix [#14][https://github.com/bueltge/Authenticator/issues/14] 
+* Fix [#14][https://github.com/bueltge/Authenticator/issues/14]
 * Add a removel of backlink in login footer [#8](https://github.com/bueltge/Authenticator/issues/8)
 * Filter for Ajax actions [#12](https://github.com/bueltge/Authenticator/issues/12)
 * Redefine `$reauth` for redirect [#11](https://github.com/bueltge/Authenticator/issues/11)
